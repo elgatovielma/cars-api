@@ -1,8 +1,10 @@
 {
-    "dependencies": {
-      "express": "*"
-    },
-    "scripts": {
-      "start": "node app.js"
-    }
+  "dependencies": {
+    "express": "*",
+    "mongoose": "*",
+    "ajv": "*"
+  },
+  "scripts": {
+    "start": "node app.js"
   }
+}

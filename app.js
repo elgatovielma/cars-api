@@ -1,15 +1,19 @@
 // Modules
 const express = require('express');
+const connectDB = require('./server/database/connection');
 
 // App
 const app = express();
 
+// mongodb connection
+connectDB();
 
-const PORT = process.env.PORT || 3000
+// app port
+const PORT =  3000;
 
 
 // load routers
-// app.use('/', require('./server/routes/router'))
+app.use('/', require('./server/routes/router'))
 
 app.get('/', (req, res) => {
   res.send('Hello World');

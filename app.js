@@ -11,6 +11,8 @@ connectDB();
 // app port
 const PORT =  3000;
 
+// body parser for json 
+app.use(express.json());
 
 // load routers
 app.use('/', require('./server/routes/router'))

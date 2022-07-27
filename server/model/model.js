@@ -19,7 +19,7 @@ const schema = new mongoose.Schema({
         required: true
     },
     color :  String,
-    year: Number
+    year: Number 
 });
 
 module.exports = mongoose.model('Cars', schema);

@@ -10,7 +10,6 @@ const schema = {
     color: { type: 'string', minLength: 3 }, 
     year: {type: "integer"}
   },
-  required: ['ownersEmail', 'brand', 'model', 'hybrid'],
   additionalProperties: false
 };
 

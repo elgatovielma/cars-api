@@ -1,25 +1,41 @@
 const mongoose = require('mongoose');
 
-const schema = new mongoose.Schema({
-    ownersEmail: {
-        type : String,
-        required: true,
-        unique: true
+const schema = new mongoose.Schema(
+    {
+        licencePlate: {
+            type : String,
+            required: true,
+            unique: true
+        },
+        brand: {
+            type : String,
+            required: true
+        },
+        model: {
+            type: String,
+            required: true
+        },
+        hybrid: {
+            type: Boolean,
+            required: true
+        },
+        year:  {
+            type: Number,
+            required: true
+        },
+        images: [{
+            _id: false,
+            path: {
+                type: String,
+                required: true
+            }, 
+            mimeType: {
+                type: String,
+                required: true
+            },
+        }],
     },
-    brand : {
-        type : String,
-        required: true
-    },
-    model : {
-        type: String,
-        required: true
-    },
-    hybrid : {
-        type: Boolean,
-        required: true
-    },
-    color :  String,
-    year: Number 
-});
+    { timestamps: true },
+);
 
-module.exports = mongoose.model('Cars', schema);
+module.exports = mongoose.model('cars', schema);

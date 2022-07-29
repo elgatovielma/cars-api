@@ -5,18 +5,22 @@ exports.create = async (req,res)=> {
   try {
     // new car
     const car = new Car({
-      ownersEmail : req.body.ownersEmail,
+      licencePlate : req.body.licencePlate,
       brand : req.body.brand,
       model: req.body.model,
       hybrid : req.body.hybrid,
-      color: req.body.color,
-      year: req.body.year
+      year: req.body.year, 
+      images: req.body.images
     });
     let savedCar = await car.save(); //save new car document
-    res.send(savedCar);
+    res.send({ _id: savedCar._id});
   } catch(err) {
     console.log(`err ${err}`);
-    res.status(500).send(err);
+    // 11000 is the error code MongoDB  returns when an unique attribute value has already been saved 
+    if(err.code == 11000) res.status(400).send({ message :`The car with the licence plate ${req.body.licencePlate} already exists`});
+    // Check if there was a missing required attribute 
+    else if (err.name === "ValidationError")  res.status(400).send({ message : err.message});
+    res.status(500).send({ message :`Something went wrong`});
   }
 
 }
@@ -25,11 +29,11 @@ exports.create = async (req,res)=> {
 exports.list = async (_,res)=> {
   try {
     // list cars documents and return only meta-data
-    let carsList = await Car.find({}, '_id __v');    
+    let carsList = await Car.find({}, '_id createdAt updatedAt');    
     res.send(carsList); 
   } catch(err) {
     console.log(`err ${err}`);
-    res.status(500).send(err);
+    res.status(500).send({ message :`Something went wrong`});
   }
 }
 
@@ -43,7 +47,7 @@ exports.get = async (req, res)=> {
     res.send(car);   
   } catch(err) {
     console.log(`err ${err}`);
-    res.status(500).send(err);
+    res.status(500).send({ message :`Something went wrong`});
   }
 }
 
@@ -61,7 +65,7 @@ exports.update = async (req, res)=> {
     res.send(car);   
   } catch(err) {
     console.log(`err ${err}`);
-    res.status(500).send(err);
+    res.status(500).send({ message :`Something went wrong`});
   }
 }
 
@@ -75,6 +79,6 @@ exports.delete = async (req, res)=> {
     res.send(car);   
   } catch(err) {
     console.log(`err ${err}`);
-    res.status(500).send(err);
+    res.status(500).send({ message :`Something went wrong`});
   }
 }

@@ -1,14 +1,25 @@
 const ajvInstance = require('./ajv-instance');
 
+
+
 const schema = {
   type: 'object',
   properties: {
-    ownersEmail: { type: 'string', format: 'email' },
+    licencePlate: { type: 'string', minLength: 3 },
     brand: { type: 'string', minLength: 3 },
     model: { type: 'string', minLength: 3 },
     hybrid: { type: 'boolean'},
-    color: { type: 'string', minLength: 3 }, 
-    year: {type: "integer"}
+    year: {type: "integer"},
+    images: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          path: { type: 'string', minLength: 3 }, 
+          mimeType: { type: 'string', minLength: 3 },
+        } 
+      }
+    }
   },
   additionalProperties: false
 };

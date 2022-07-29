@@ -5,7 +5,7 @@ const connectDB = require('./server/database/connection');
 // App
 const app = express();
 
-// mongodb connection
+// MongoDB  connection
 connectDB();
 
 // app port
@@ -17,11 +17,7 @@ app.use(express.json());
 // load routers
 app.use('/', require('./server/routes/router'))
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
-  
-
+// app listening 
 app.listen(PORT, ()=> { console.log(`Server is running on http://localhost:${PORT}`)});
 
 

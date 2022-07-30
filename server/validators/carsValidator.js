@@ -1,8 +1,4 @@
-const Ajv = require('ajv');
-const addFormats = require('ajv-formats');
-
-const ajv = new Ajv({ allErrors: true });
-addFormats(ajv);
+const ajvInstance = require('./ajv-instance');
 
 // JSON Schema validator for the cars properties 
 const schema_car = {
@@ -24,18 +20,7 @@ const schema_car = {
             }
         }
     },
-    required: ['licencePlate', 'brand', 'model', 'hybrid', 'year', 'images'],
     additionalProperties: false
 };
 
-// JSON Schema validator for the users properties 
-const schema_user = {
-    type: 'object',
-    properties: {
-        email: { type: 'string', format: 'email' },
-        token: { type: 'string', minLength: 3 },
-    },
-    additionalProperties: false
-};
-
-module.exports = ajv.addSchema(schema_car).compile(schema_user);
+module.exports = ajvInstance.compile(schema_car);

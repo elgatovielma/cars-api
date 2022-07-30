@@ -6,9 +6,7 @@ services:
         volumes:
             - my_data:/data/db
     app:
-        build:
-            context: .
-            dockerfile: Dockerfile
+        image: vielmagalberto/cars-api
         depends_on:
             - database
         ports:

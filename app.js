@@ -1,6 +1,10 @@
 // Modules
 const express = require('express');
 const connectDB = require('./server/database/connection');
+const dotenv = require("dotenv")
+
+// Load env variables
+dotenv.config()
 
 // App
 const app = express();

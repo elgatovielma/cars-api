@@ -1,11 +1,13 @@
 {
-  "dependencies": {
-    "express": "*",
-    "mongoose": "*",
-    "ajv": "*",
-    "jsonwebtoken": "*"
-  },
-  "scripts": {
-    "start": "node app.js"
-  }
+    "dependencies": {
+        "express": "*",
+        "mongoose": "*",
+        "ajv": "*",
+        "ajv-formats": "*",
+        "jsonwebtoken": "*",
+        "dotenv": "*"
+    },
+    "scripts": {
+        "start": "node app.js"
+    }
 }

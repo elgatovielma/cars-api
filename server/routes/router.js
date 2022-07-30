@@ -2,20 +2,23 @@ const express = require('express');
 const route = express.Router()
 
 const cars = require('../controllers/cars');
-const auth = require('../controllers/cars');
+const auth = require('../controllers/auth');
 
 const validateDto = require('../middleware/validate-dto');
-const carSchema = require('../schemas/car');
+const authenticateToken =  require('../middleware/auth');
+const validator = require('../validations/validation');
 
 // Cars API endpoints
-route.post('/api/v1/cars', validateDto(carSchema), cars.create);
-route.get('/api/v1/cars', cars.list);
-route.get('/api/v1/cars/:id', cars.get);
-route.patch('/api/v1/cars/:id', validateDto(carSchema), cars.update);
-route.delete('/api/v1/cars/:id', cars.delete);
+route.post('/api/v1/cars', [authenticateToken, validateDto(validator)], cars.create);
+route.get('/api/v1/cars', authenticateToken, cars.list);
+route.get('/api/v1/cars/:id', authenticateToken, authenticateToken,cars.get);
+route.patch('/api/v1/cars/:id', [authenticateToken, validateDto(validator)], cars.update);
+route.delete('/api/v1/cars/:id', authenticateToken, cars.delete);
 
 // JWT Authentication endpoints
-route.post('/login', auth.login);
+route.post('/login', validateDto(validator), auth.login);
+route.post('/token', validateDto(validator), auth.token);
+route.delete('/logout', validateDto(validator), auth.logout);
 
 
 

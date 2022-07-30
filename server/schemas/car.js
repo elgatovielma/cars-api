@@ -21,6 +21,7 @@ const schema = {
       }
     }
   },
+  required: ['licencePlate', 'brand', 'model', 'hybrid', 'year', 'images'],
   additionalProperties: false
 };
 

@@ -2,7 +2,8 @@
   "dependencies": {
     "express": "*",
     "mongoose": "*",
-    "ajv": "*"
+    "ajv": "*",
+    "jsonwebtoken": "*"
   },
   "scripts": {
     "start": "node app.js"

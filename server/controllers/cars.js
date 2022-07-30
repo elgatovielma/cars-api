@@ -1,4 +1,4 @@
-const Car = require('../model/model');
+const Car = require('../models/cars');
 
 // Create and save a new car
 exports.create = async (req,res)=> {

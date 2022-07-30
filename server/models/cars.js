@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Build Schema for cars model
 const schema = new mongoose.Schema(
     {
         licencePlate: {

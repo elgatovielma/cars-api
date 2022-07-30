@@ -4,6 +4,7 @@ const addFormats = require('ajv-formats');
 const ajv = new Ajv({ allErrors: true });
 addFormats(ajv);
 
+// JSON Schema validator for the cars properties 
 const schema_car = {
     type: 'object',
     properties: {
@@ -27,6 +28,7 @@ const schema_car = {
     additionalProperties: false
 };
 
+// JSON Schema validator for the users properties 
 const schema_user = {
     type: 'object',
     properties: {

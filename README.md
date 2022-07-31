@@ -10,11 +10,15 @@ docker-compose up
 # Auth API
 
 Prior to being able to use the Cars API. First, you must authenticate using the Auth API.
+* Login: Returns an access token for your Cars API requests and a refresh token.
+* Token: Returns a new access token using the refresh token.
+* Logout: Removes a refresh token.
+  
+<details><summary>Auth: login</summary> 
+<p>
 
-The **login** endpoint will give an access token for your requests and a refresh token to use in The **token** endpoint for when the access token expires and you need a new one, for the last, the **logout** endpoint will remove your refresh token.
-
-## Auth: login
 #### Request
+
 ```bash
 curl --location --request POST 'http://localhost:3000/auth/login' \
 --header 'Content-Type: application/json' \
@@ -30,14 +34,18 @@ curl --location --request POST 'http://localhost:3000/auth/login' \
     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZEBnbWFpbC5jb20iLCJpYXQiOjE2NTkyMTMzODV9.ldmThCtoERPgQDpTw6N695AS4ud98tBRsLmsAR-_tVM"
 }
 ```
+</p>
+</details>
 
-## Auth: token
+<details><summary>Auth: token</summary> 
+<p>
+
 #### Request
 ```bash
 curl --location --request POST 'http://localhost:3000/auth/token' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZEBnbWFpbC5jb20iLCJpYXQiOjE2NTkyMTMzODV9.ldmThCtoERPgQDpTw6N695AS4ud98tBRsLmsAR-_tVM"
+    "token": "{refresh_token}"
 }'
 ```
 
@@ -48,24 +56,38 @@ curl --location --request POST 'http://localhost:3000/auth/token' \
 }
 ```
 
-## Auth: logout
+</p>
+</details>
+
+<details><summary>Auth: logout</summary> 
+<p>
+
 #### Request
 ```bash
 curl --location --request DELETE 'http://localhost:3000/auth/logout' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZEBnbWFpbC5jb20iLCJpYXQiOjE2NTkyMTMzODV9.ldmThCtoERPgQDpTw6N695AS4ud98tBRsLmsAR-_tVM"
+    "token": "{refresh_token}"
 }'
 ```
 
 #### Response (Status Code 204)
 
+</p>
+</details>
+
 # Cars API
 
-These are the different methods available to interact with the Cars API
+These are the different methods available to interact with the Cars API.
+* Create: Insert a new car.
+* List: Read meta-data of all cars in the system.
+* Get: Read the full data of an individual car.
+* Update: Updaten single properties of a single car.
+* Delete: Remove an individual car.
 
+<details><summary>Cars: create</summary> 
+<p>
 
-## Cars: create
 #### Request
 ```bash
 curl --location --request POST 'http://localhost:3000/api/v1/cars' \
@@ -97,7 +119,12 @@ curl --location --request POST 'http://localhost:3000/api/v1/cars' \
 }
 ```
 
-## Cars: list
+</p>
+</details>
+
+<details><summary>Cars: list</summary> 
+<p>
+
 #### Request
 ```bash
 curl --location --request GET 'http://localhost:3000/api/v1/cars' \
@@ -125,7 +152,12 @@ curl --location --request GET 'http://localhost:3000/api/v1/cars' \
 ]
 ```
 
-## Cars: get
+</p>
+</details>
+
+<details><summary>Cars: get</summary> 
+<p>
+
 #### Request
 ```bash
 curl --location --request GET 'http://localhost:3000/api/v1/cars/{carId}' \
@@ -157,7 +189,12 @@ curl --location --request GET 'http://localhost:3000/api/v1/cars/{carId}' \
 }
 ```
 
-## Cars: update
+</p>
+</details>
+
+<details><summary>Cars: update</summary> 
+<p>
+
 #### Request
 ```bash
 curl --location --request PATCH 'http://localhost:3000/api/v1/cars/{carId}' \
@@ -193,7 +230,12 @@ curl --location --request PATCH 'http://localhost:3000/api/v1/cars/{carId}' \
 }
 ```
 
-## Cars: delete
+</p>
+</details>
+
+<details><summary>Cars: delete</summary> 
+<p>
+
 #### Request
 ```bash
 curl --location --request DELETE 'http://localhost:3000/api/v1/cars/{carId}' \
@@ -202,3 +244,5 @@ curl --location --request DELETE 'http://localhost:3000/api/v1/cars/{carId}' \
 
 #### Response (Status Code 204)
 
+</p>
+</details>
